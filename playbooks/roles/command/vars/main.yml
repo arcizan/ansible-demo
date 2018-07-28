@@ -1,0 +1,15 @@
+---
+
+# source: "roles/command/vars/main.yml"
+
+foo: "foo"
+
+bar:
+  a: "bar"
+  b: "baz"
+
+num1: 10
+num2: 20
+num3: "{{ num1 * num2 }}"
+
+bool1: false

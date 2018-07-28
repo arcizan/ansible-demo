@@ -1,0 +1,15 @@
+---
+
+source: "roles/command/defaults/main.yml"
+
+default_foo: "default_foo"
+
+default_bar:
+  a: "default_bar"
+  b: "default_baz"
+
+default_num1: 1
+default_num2: 2
+default_num3: "{{ default_num1 + default_num2 }}"
+
+default_bool1: false

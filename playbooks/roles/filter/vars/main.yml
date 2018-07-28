@@ -1,0 +1,6 @@
+---
+
+users:
+  - { id: 1, name: foo-foo, rank: A }
+  - { id: 2, name: bar-bar, subscription: true }
+  - { id: 3, name: baz-baz, rank: C }

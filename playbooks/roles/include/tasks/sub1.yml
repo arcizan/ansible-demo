@@ -1,0 +1,11 @@
+---
+
+- name: echo var1 in sub1
+  command: echo "{{ var1 }}"
+  tags: include
+
+- name: include sub2
+  include: sub2.yml
+  vars:
+    var2: "{{ var1 }}"
+  tags: include

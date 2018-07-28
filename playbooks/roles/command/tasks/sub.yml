@@ -1,0 +1,16 @@
+---
+
+- name: echo default foo in sub
+  command: echo "{{ default_foo }}"
+  tags: command
+
+- name: echo foo in sub with tags command
+  command: echo "{{ foo }}"
+  tags: command
+
+- name: echo foo in sub with tags command2
+  command: echo "{{ foo }}"
+  tags: command2
+
+- name: echo foo in sub without tags
+  command: echo "{{ foo }}"

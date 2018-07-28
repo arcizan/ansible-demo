@@ -1,0 +1,15 @@
+---
+
+- hosts: localhost
+  # connection: local
+  vars_files:
+    - vars/common.yml
+  roles:
+    - aws
+    - command
+    - debug
+    - file
+    - filter
+    - include
+    - shell
+    - var

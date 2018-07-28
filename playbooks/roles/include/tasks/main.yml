@@ -1,0 +1,20 @@
+---
+
+- name: set list
+  set_fact: list="{{ variables }}"
+  tags: include
+
+- name: include sub1
+  include: sub1.yml
+  with_items: "{{ list }}"
+  loop_control:
+    loop_var: var1
+  when: condition
+  tags: include
+
+- name: include debug
+  include: ../../debug/tasks/main.yml
+  vars:
+    var1: "{{ item }}"
+  with_items: "{{ list }}"
+  tags: include

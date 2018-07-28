@@ -1,0 +1,5 @@
+---
+
+# source: "vars/common.yml"
+
+common_foo: "common_foo"

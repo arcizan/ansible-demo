@@ -1,0 +1,46 @@
+---
+
+- name: create file
+  command: touch /tmp/hoge creates=/tmp/hoge
+  tags: file
+
+- name: copy file
+  copy: src="{{ item }}" dest="/tmp/{{ item }}" mode=0644
+  with_items:
+    - foo
+    - bar
+  tags: file
+
+- name: include command vars
+  include_vars: "roles/command/{{ item }}/main.yml"
+  with_items:
+    - "defaults"
+    - "vars"
+  tags: file
+
+- name: copy template file
+  template: src=baz.j2 dest=/tmp/baz
+  tags: file
+
+- name: cat file
+  command: cat /tmp/foo
+  register: file_content
+  tags: file
+
+- name: append lines to file
+  lineinfile:
+    dest: /tmp/foo
+    line: "\nMatch User foo\n  PasswordAhthentication yes\n  PermitEmptyPasswords yes"
+    insertafter: EOF
+  when: not 'Match User foo' in file_content.stdout_lines
+  tags: file
+
+- name: replace regexp
+  replace:
+    dest: /tmp/bar
+    regexp: "{{ item.regexp }}"
+    replace: "{{ item.replace }}"
+  with_items:
+    - { regexp: '^(\s+license_key:) .*$', replace: "\\1 '{{ num1 }}'" }
+    - { regexp: '^(\s+app_name:) .*$', replace: '\1 {{ num2 }}' }
+  tags: file

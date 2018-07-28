@@ -1,0 +1,89 @@
+---
+
+- name: print playbook_dir
+  debug: var=playbook_dir
+  tags: var
+
+- name: make empty list
+  set_fact:
+    my_list: []
+  tags: var
+
+- name: add item to list
+  set_fact:
+    my_list: "{{ my_list }} + [ 'foo' ]"
+  tags: var
+
+- name: add items to list
+  set_fact:
+    my_list: "{{ my_list }} + [ 'bar', 'baz' ]"
+  tags: var
+
+- name: print list
+  debug: var=my_list
+  tags: var
+
+- name: make dict from list
+  set_fact:
+    my_dict: |
+      {%- set tmp={} %}
+      {%- for i in my_list %}
+        {%- if tmp.update({ i: { 'id': 1 } }) %}
+        {%- endif %}
+      {%- endfor %}
+      {{ tmp }}
+  tags: var
+
+- name: print dict
+  debug: var=my_dict
+  tags: var
+
+- name: print tmp
+  debug: var=tmp
+  tags: var
+
+- name: make empty dict
+  set_fact:
+    my_dict2: {}
+  tags: var
+
+- name: add items to dict
+  set_fact:
+    my_dict2: "{{ my_dict2 | combine({ 'xxx' + item.0 | string: item.1 }) }}"
+  with_indexed_items:
+    - "{{ my_dict.keys() }}"
+  tags: var
+
+- name: print dict
+  debug: var=my_dict2
+  tags: var
+
+- name: make list from dict
+  set_fact:
+    my_list2: "{{ my_list2 | default([]) }} + [ '{{ my_dict2['xxx' + item] | default('') }}' ]"
+  with_sequence: start=1 end=3 format="%s"
+  tags: var
+
+- name: print list
+  debug: var=my_list2
+  tags: var
+
+- name: make list of dict
+  set_fact:
+    my_dict_list:
+      - { a: 1, b: 2, c: 3 }
+  tags: var
+
+- name: add dict to list
+  set_fact:
+    my_dict_list: "{{ my_dict_list }} + [ { 'a': '{{ item.1 }}',
+                                            'b': '{{ my_list2[item.0] | default('') }}',
+                                            'c': 10,
+                                            'd': [ true, false ] } ]"
+  with_indexed_items:
+    - "{{ my_list }}"
+  tags: var
+
+- name: print list of dict
+  debug: var=my_dict_list
+  tags: var

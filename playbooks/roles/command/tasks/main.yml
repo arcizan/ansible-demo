@@ -1,0 +1,73 @@
+---
+
+- name: echo playbook_dir
+  command: echo "{{ playbook_dir }}"
+  tags: command
+
+- name: echo inventory_dir
+  command: echo "{{ inventory_dir }}"
+  tags: command
+
+- name: echo group foo
+  command: echo "{{ group_foo }}"
+  tags: command
+
+- name: echo host foo
+  command: echo "{{ host_foo }}"
+  when: host_foo is defined
+  tags: command
+
+- name: echo common foo
+  command: echo "{{ common_foo }}"
+  tags: command
+
+- name: echo default foo
+  command: echo "{{ default_foo }}"
+  tags: command
+
+- name: echo foo
+  command: echo "{{ foo }}"
+  tags: command
+
+- name: echo foo with single quote
+  command: echo '{{ foo }}'
+  tags: command
+
+- name: include sub
+  include: sub.yml
+  vars:
+    default_foo: "default_foo_sub"
+    foo: "foo_sub"
+  tags: command
+
+- name: echo source
+  command: echo "{{ source }}"
+  tags: command
+
+- name: calculate with literal
+  command: echo {{ 2 * (2 + 1) }}
+  tags: command
+
+- name: calculate with num1
+  command: echo {{ 2 * num1 * 2 }}
+  tags: command
+
+- name: calculate with num1 and num2
+  command: echo {{ 2 * num1 * num2 * 2 }}
+  tags: command
+
+- name: calculate division
+  command: echo {{ 4 / 8 * 5 }}
+  tags: command
+
+- name: calculate string
+  command: echo {{ ('10G' | convert_to_megabyte / 4) | int }}
+  tags: command
+
+- name: echo num3
+  command: echo {{ num3 }}
+  tags: command
+
+- name: execute hostname command
+  command: hostname
+  tags: command

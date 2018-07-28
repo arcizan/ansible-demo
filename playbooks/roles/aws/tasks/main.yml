@@ -1,0 +1,23 @@
+---
+
+- name: download file from s3
+  s3:
+    bucket: "{{ s3_bucket }}"
+    object: "/{{ object }}"
+    dest: "{{ dl_dir }}/{{ object }}"
+    mode: get
+    aws_access_key: "{{ ansible_env['AWS_ACCESS_KEY_ID'] }}"
+    aws_secret_key: "{{ ansible_env['AWS_SECRET_ACCESS_KEY'] }}"
+    region: "{{ ansible_env['AWS_DEFAULT_REGION'] }}"
+  ignore_errors: yes
+  tags: aws
+
+- name: stat file
+  stat: path="{{ dl_dir }}/{{ object }}"
+  register: file_stat
+  tags: aws
+
+- name: cat file
+  command: cat "{{ dl_dir }}/{{ object }}"
+  when: file_stat.stat.exists
+  tags: aws

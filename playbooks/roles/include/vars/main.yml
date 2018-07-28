@@ -1,0 +1,7 @@
+---
+
+condition: false
+variables:
+  - foo
+  - bar
+  - baz

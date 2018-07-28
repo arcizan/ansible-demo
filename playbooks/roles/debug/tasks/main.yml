@@ -1,0 +1,9 @@
+---
+
+- name: debug
+  debug: var=vars
+  tags: debug
+
+- name: debug
+  debug: msg="{{ foo }}{{ ':' }}{{ bar.a }}/{{ bar.b }}"
+  tags: debug

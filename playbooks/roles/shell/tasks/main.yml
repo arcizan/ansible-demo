@@ -1,0 +1,92 @@
+---
+
+- name: read stdin in shell
+  shell: |
+    read -p '> '
+    echo "$REPLY"
+  tags: shell
+
+- name: read stdin in script
+  script: files/read-stdin.sh
+  tags: shell
+
+- name: shell module with no_log
+  shell: date '+%FT%T%:z'
+  environment:
+    LC_ALL: "C"
+  register: shell_result
+  no_log: yes
+  tags: shell
+
+- name: set shell stdout
+  set_fact: shell_stdout="{{ shell_result.stdout }}"
+  tags: shell
+
+- name: print shell stdout
+  debug: var=shell_stdout
+  tags: shell
+
+- name: command substitution in shell module
+  shell: echo "$(pwd)" - '$(pwd)'
+  register: shell_result
+  tags: shell
+
+- name: set shell stdout
+  set_fact: shell_stdout="{{ shell_result.stdout }}"
+  tags: shell
+
+- name: print shell stdout
+  debug: var=shell_stdout
+  tags: shell
+
+- name: command substitution in shell module via shell with double quote
+  shell: bash -c 'echo "$(pwd)"'
+  register: shell_result
+  tags: shell
+
+- name: set shell stdout
+  set_fact: shell_stdout="{{ shell_result.stdout }}"
+  tags: shell
+
+- name: print shell stdout
+  debug: var=shell_stdout
+  tags: shell
+
+- name: command substitution in shell module via shell with single quote
+  shell: bash -c "echo '$(pwd)'"
+  register: shell_result
+  tags: shell
+
+- name: set shell stdout
+  set_fact: shell_stdout="{{ shell_result.stdout }}"
+  tags: shell
+
+- name: print shell stdout
+  debug: var=shell_stdout
+  tags: shell
+
+# - name: false command
+#   shell: 'false'
+#   register: shell_result
+#   tags: shell
+
+# - name: false command with no_log
+#   shell: 'false'
+#   register: shell_result
+#   no_log: yes
+#   tags: shell
+
+- name: false command with no_log and ignore_errors
+  shell: 'false'
+  register: shell_result
+  no_log: yes
+  ignore_errors: yes
+  tags: shell
+
+- name: set shell exit status
+  set_fact: shell_exit_status="{{ shell_result.rc }}"
+  tags: shell
+
+- name: print shell exit status
+  debug: var=shell_exit_status
+  tags: shell

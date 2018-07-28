@@ -1,0 +1,10 @@
+---
+
+- name: echo var1 in sub2
+  command: echo "{{ var1 }}"
+  tags: include
+
+- name: echo var2 in sub2
+  command: echo "{{ var2 }}"
+  when: true
+  tags: include

@@ -1,0 +1,4 @@
+---
+
+- include: localhost.yml
+- include: server.yml
