@@ -72,7 +72,12 @@
   command: hostname
   tags: command
 
-- name: zip list
+- name: zip 2 lists
   command: echo "item[0]={{ item[0] }}, item[1]={{ item[1] }}"
   with_items: "{{ list1 | zip_for_loop(list2) }}"
+  tags: command
+
+- name: zip 3 lists
+  command: echo "item[0]={{ item[0] }}, item[1]={{ item[1] }}, item[2]={{ item[2] }}"
+  with_items: "{{ list1 | zip_for_loop(list2, ['A', 'B', 'C']) }}"
   tags: command
