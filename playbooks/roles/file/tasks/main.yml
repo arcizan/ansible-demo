@@ -1,11 +1,16 @@
 ---
 
 - name: create file
-  command: touch /tmp/hoge creates=/tmp/hoge
+  command: touch /tmp/hoge
+  args:
+    creates: /tmp/hoge
   tags: file
 
 - name: copy file
-  copy: src="{{ item }}" dest="/tmp/{{ item }}" mode=0644
+  copy:
+    src: "{{ item }}"
+    dest: "/tmp/{{ item }}"
+    mode: 0644
   with_items:
     - foo
     - bar
@@ -19,7 +24,9 @@
   tags: file
 
 - name: copy template file
-  template: src=baz.j2 dest=/tmp/baz
+  template:
+    src: baz.j2
+    dest: /tmp/baz
   tags: file
 
 - name: cat file

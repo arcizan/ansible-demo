@@ -1,7 +1,8 @@
 ---
 
 - name: set list
-  set_fact: list="{{ variables }}"
+  set_fact:
+    list: "{{ variables }}"
   tags: include
 
 - name: include sub1

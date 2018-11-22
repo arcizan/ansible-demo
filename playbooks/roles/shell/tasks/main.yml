@@ -19,11 +19,13 @@
   tags: shell
 
 - name: set shell stdout
-  set_fact: shell_stdout="{{ shell_result.stdout }}"
+  set_fact:
+    shell_stdout: "{{ shell_result.stdout }}"
   tags: shell
 
 - name: print shell stdout
-  debug: var=shell_stdout
+  debug:
+    var: shell_stdout
   tags: shell
 
 - name: command substitution in shell module
@@ -32,11 +34,13 @@
   tags: shell
 
 - name: set shell stdout
-  set_fact: shell_stdout="{{ shell_result.stdout }}"
+  set_fact:
+    shell_stdout: "{{ shell_result.stdout }}"
   tags: shell
 
 - name: print shell stdout
-  debug: var=shell_stdout
+  debug:
+    var: shell_stdout
   tags: shell
 
 - name: command substitution in shell module via shell with double quote
@@ -45,11 +49,13 @@
   tags: shell
 
 - name: set shell stdout
-  set_fact: shell_stdout="{{ shell_result.stdout }}"
+  set_fact:
+    shell_stdout: "{{ shell_result.stdout }}"
   tags: shell
 
 - name: print shell stdout
-  debug: var=shell_stdout
+  debug:
+    var: shell_stdout
   tags: shell
 
 - name: command substitution in shell module via shell with single quote
@@ -58,11 +64,13 @@
   tags: shell
 
 - name: set shell stdout
-  set_fact: shell_stdout="{{ shell_result.stdout }}"
+  set_fact:
+    shell_stdout: "{{ shell_result.stdout }}"
   tags: shell
 
 - name: print shell stdout
-  debug: var=shell_stdout
+  debug:
+    var: shell_stdout
   tags: shell
 
 # - name: false command
@@ -84,9 +92,11 @@
   tags: shell
 
 - name: set shell exit status
-  set_fact: shell_exit_status="{{ shell_result.rc }}"
+  set_fact:
+    shell_exit_status: "{{ shell_result.rc }}"
   tags: shell
 
 - name: print shell exit status
-  debug: var=shell_exit_status
+  debug:
+    var: shell_exit_status
   tags: shell

@@ -1,19 +1,23 @@
 ---
 
 - name: count by id definition
-  set_fact: count="{{ users | selectattr('id', 'defined') | list | length }}"
+  set_fact:
+    count: "{{ users | selectattr('id', 'defined') | list | length }}"
   tags: filter
 
 - name: print count filtered by id definition
-  debug: var=count
+  debug:
+    var: count
   tags: filter
 
 - name: count by age definition
-  set_fact: count="{{ users | selectattr('age', 'defined') | list | length }}"
+  set_fact:
+    count: "{{ users | selectattr('age', 'defined') | list | length }}"
   tags: filter
 
 - name: print count filtered by age definition
-  debug: var=count
+  debug:
+    var: count
   tags: filter
 
 - name: hyphen to camel case
@@ -22,27 +26,33 @@
   tags: filter
 
 - name: select user where rank = A limit 1
-  set_fact: user="{{ users | selectattr('rank', 'defined') | selectattr('rank', 'equalto', 'A') | list | first }}"
+  set_fact:
+    user: "{{ users | selectattr('rank', 'defined') | selectattr('rank', 'equalto', 'A') | list | first }}"
   tags: filter
 
 - name: print user where rank = A limit 1
-  debug: var=user
+  debug:
+    var: user
   tags: filter
 
 - name: select user where rank = B limit 1
-  set_fact: user="{{ users | selectattr('rank', 'defined') | selectattr('rank', 'equalto', 'B') | list | first }}"
+  set_fact:
+    user: "{{ users | selectattr('rank', 'defined') | selectattr('rank', 'equalto', 'B') | list | first }}"
   ignore_errors: yes
   tags: filter
 
 - name: print user where rank = B limit 1
-  debug: var=user
+  debug:
+    var: user
   when: user is mapping
   tags: filter
 
 - name: select user where subscription = true order by id desc limit 1
-  set_fact: user="{{ users | selectattr('subscription', 'defined') | selectattr('subscription', 'equalto', true) | list | last }}"
+  set_fact:
+    user: "{{ users | selectattr('subscription', 'defined') | selectattr('subscription', 'equalto', true) | list | last }}"
   tags: filter
 
 - name: print user where subscription = true order by id desc limit 1
-  debug: var=user
+  debug:
+    var: user
   tags: filter

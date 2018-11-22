@@ -1,7 +1,8 @@
 ---
 
 - name: print playbook_dir
-  debug: var=playbook_dir
+  debug:
+    var: playbook_dir
   tags: var
 
 - name: make empty list
@@ -20,7 +21,8 @@
   tags: var
 
 - name: print list
-  debug: var=my_list
+  debug:
+    var: my_list
   tags: var
 
 - name: make dict from list
@@ -35,11 +37,13 @@
   tags: var
 
 - name: print dict
-  debug: var=my_dict
+  debug:
+    var: my_dict
   tags: var
 
 - name: print tmp
-  debug: var=tmp
+  debug:
+    var: tmp
   tags: var
 
 - name: make empty dict
@@ -50,12 +54,12 @@
 - name: add items to dict
   set_fact:
     my_dict2: "{{ my_dict2 | combine({ 'xxx' + item.0 | string: item.1 }) }}"
-  with_indexed_items:
-    - "{{ my_dict.keys() }}"
+  with_indexed_items: "{{ my_dict.keys() }}"
   tags: var
 
 - name: print dict
-  debug: var=my_dict2
+  debug:
+    var: my_dict2
   tags: var
 
 - name: make list from dict
@@ -65,7 +69,8 @@
   tags: var
 
 - name: print list
-  debug: var=my_list2
+  debug:
+    var: my_list2
   tags: var
 
 - name: make list of dict
@@ -80,10 +85,10 @@
                                             'b': '{{ my_list2[item.0] | default('') }}',
                                             'c': 10,
                                             'd': [ true, false ] } ]"
-  with_indexed_items:
-    - "{{ my_list }}"
+  with_indexed_items: "{{ my_list }}"
   tags: var
 
 - name: print list of dict
-  debug: var=my_dict_list
+  debug:
+    var: my_dict_list
   tags: var

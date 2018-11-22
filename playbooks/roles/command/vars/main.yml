@@ -14,5 +14,11 @@ num3: "{{ num1 * num2 }}"
 
 bool1: false
 
-list1: [ 1, 2, 3 ]
-list2: [ a, b, c ]
+list1:
+  - 1
+  - 2
+  - 3
+list2:
+  - a
+  - b
+  - c

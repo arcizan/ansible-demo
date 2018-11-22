@@ -13,7 +13,8 @@
   tags: aws
 
 - name: stat file
-  stat: path="{{ dl_dir }}/{{ object }}"
+  stat:
+    path: "{{ dl_dir }}/{{ object }}"
   register: file_stat
   tags: aws
 
