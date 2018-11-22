@@ -51,3 +51,9 @@
     - { regexp: '^(\s+license_key:) .*$', replace: "\\1 '{{ num1 }}'" }
     - { regexp: '^(\s+app_name:) .*$', replace: '\1 {{ num2 }}' }
   tags: file
+
+- name: copy other role's file
+  copy:
+    src: ../../shell/files/read-stdin.sh
+    dest: /tmp/read-stdin.sh
+  tags: file
