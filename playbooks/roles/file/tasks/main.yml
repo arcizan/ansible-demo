@@ -1,9 +1,11 @@
 ---
 
 - name: create file
-  command: touch /tmp/hoge
-  args:
-    creates: /tmp/hoge
+  file:
+    path: /tmp/hoge
+    state: touch
+    # access_time: preserve       # since 2.7
+    # modification_time: preserve # ditto
   tags: file
 
 - name: copy file
