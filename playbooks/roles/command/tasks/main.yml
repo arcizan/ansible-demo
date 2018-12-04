@@ -33,6 +33,18 @@
   command: echo '{{ foo }}'
   tags: command
 
+- name: echo foo bar with folded style
+  command: >
+    echo "{{ foo }}"
+    'bar'
+  tags: command
+
+- name: echo foo bar with literal style
+  command: |
+    echo "{{ foo }}"
+    'bar'
+  tags: command
+
 - name: include sub
   include: sub.yml
   vars:
