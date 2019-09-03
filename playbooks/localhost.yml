@@ -13,3 +13,4 @@
     - include
     - shell
     - var
+    - when

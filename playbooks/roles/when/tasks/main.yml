@@ -1,0 +1,26 @@
+---
+
+- name: set foo to true
+  set_fact:
+    foo: true
+  tags: when
+
+- name: set condition
+  set_fact:
+    condition: "{{ foo | default(false) | bool }}"
+  tags: when
+
+- name: run command 1
+  command: echo 1 "{{ condition }}"
+  when: condition
+  tags: when
+
+- name: set foo to false
+  set_fact:
+    foo: false
+  tags: when
+
+- name: run command 2
+  command: echo 2 "{{ condition }}"
+  when: condition
+  tags: when
