@@ -10,7 +10,9 @@
   with_items: "{{ list }}"
   loop_control:
     loop_var: var1
-  when: condition
+  when:
+    - list is defined and list is iterable
+    - condition
   tags: include
 
 - name: include debug
@@ -18,4 +20,6 @@
   vars:
     var1: "{{ item }}"
   with_items: "{{ list }}"
+  when:
+    - list is defined and list is iterable
   tags: include

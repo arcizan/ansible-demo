@@ -4,8 +4,8 @@
   file:
     path: /tmp/hoge
     state: touch
-    # access_time: preserve       # since 2.7
-    # modification_time: preserve # ditto
+    access_time: preserve
+    modification_time: preserve
   tags: file
 
 - name: copy file

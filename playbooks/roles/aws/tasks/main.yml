@@ -1,7 +1,7 @@
 ---
 
 - name: download file from s3
-  s3:
+  aws_s3:
     bucket: "{{ s3_bucket }}"
     object: "/{{ object }}"
     dest: "{{ dl_dir }}/{{ object }}"
