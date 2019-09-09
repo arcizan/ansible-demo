@@ -86,10 +86,20 @@
 
 - name: zip 2 lists
   command: echo "item[0]={{ item[0] }}, item[1]={{ item[1] }}"
+  loop: "{{ list1 | zip(list2) | list }}"
+  tags: command
+
+- name: zip 2 lists by custom filter
+  command: echo "item[0]={{ item[0] }}, item[1]={{ item[1] }}"
   with_items: "{{ list1 | zip_for_loop(list2) }}"
   tags: command
 
 - name: zip 3 lists
+  command: echo "item[0]={{ item[0] }}, item[1]={{ item[1] }}, item[2]={{ item[2] }}"
+  loop: "{{ list1 | zip(list2, ['A', 'B', 'C']) | list }}"
+  tags: command
+
+- name: zip 3 lists by custom filter
   command: echo "item[0]={{ item[0] }}, item[1]={{ item[1] }}, item[2]={{ item[2] }}"
   with_items: "{{ list1 | zip_for_loop(list2, ['A', 'B', 'C']) }}"
   tags: command
